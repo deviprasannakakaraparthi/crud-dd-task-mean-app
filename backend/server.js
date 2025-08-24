@@ -3,7 +3,13 @@ const cors = require("cors");
 
 const app = express();
 
-app.use(cors());
+// ✅ MODIFY THIS PART (was: app.use(cors());)
+const corsOptions = {
+  origin: "http://3.94.86.255:8081",   // your Angular frontend EC2 URL
+  methods: "GET,POST,PUT,DELETE,OPTIONS",
+  allowedHeaders: "Content-Type,Authorization"
+};
+app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
 app.use(express.json());
